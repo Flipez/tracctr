@@ -8,5 +8,5 @@ install:
 env:
   - RAILS_ENV=test
 script:
-  - bundle exec rails db:migrate
+  - bundle exec rails db:schema:load
   - bundle exec rails test
