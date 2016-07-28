@@ -5,5 +5,8 @@ rvm:
   - 2.3.0
 install:
   - bundle install --retry=3
+env:
+  - RAILS_ENV=test
 script:
+  - bundle exec rails db:migrate
   - bundle exec rails test
