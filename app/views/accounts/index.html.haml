@@ -1,0 +1,10 @@
+.container
+  %h2
+    %i.fa.fa-cubes
+    Accounts
+  %p Here you may find a overview about all existing accounts. Feel free to join them.
+  %hr
+  .list-group
+    - @accounts.each do |account|
+      %h3= render partial: 'shared/account-list-item', locals: { account: account }
+        

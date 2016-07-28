@@ -1,0 +1,44 @@
+.panel.panel-default
+  .panel-heading
+    Wallet
+  .panel-body
+    - if @wallet
+      .pull-right
+        %h4.bill= @wallet.balance
+      In this section you may find all information about your wallet.
+      %hr
+      - if @wallet.bills.any?
+        %h3 Bills (#{@wallet.bills.count})
+        %p
+          #bills
+            .panel.list-group
+              - @wallet.bills.each_with_index do |bill, i|
+                - account = bill.account
+                .list-group-item{data: { toggle: :collapse, target: "##{i}", parent: '#bills'}, style: 'cursor: pointer'}
+                  .pull-right
+                    .bill.text-right
+                      = bill.amount
+                    .text-muted{'data-toggle': :tooltip, title: bill.created_at}
+                      = bill.created_at.strftime("%e %b %Y")
+                  %a{href: "/accounts/#{account.id}"}
+                    = account.name
+                  .text-muted
+                    from
+                    = account.owner.username
+                  .collapse{id: i}
+                    %hr
+                    .alert.alert-info
+                      This account has a total cost of #{account.price}.
+                      Since there are #{account.users.count} member(s) your share
+                      is 
+                      %strong= account.price_per_member
+                    .text-right
+                      %a.btn.btn-info{href: bill.payout_url, target: :_blank} Pay!
+                      = form_tag "/bills/#{bill.id}", method: :post do
+                        = hidden_field_tag(:state, :to_be_checked)
+                        %button.btn.btn-success Mark as paid
+      - else
+        .alert.alert-info
+          No bills found.
+    - else
+      = link_to 'Create a new wallet', '/wallets', { method: :post, class: 'btn btn-success' }

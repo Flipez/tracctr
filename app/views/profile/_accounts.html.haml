@@ -1,0 +1,25 @@
+.panel.panel-default
+  .panel-heading
+    Accounts
+  .panel-body
+    %h4 Quickjoin an account
+    .input-group
+      %select.form-control
+        - @accounts_joinable.each do |a|
+          %option{value: a.id}
+            (#{a.id}) #{a.name} owned by #{a.owner.username}
+      %span.input-group-btn
+        %button.btn.btn-info Join
+    %hr
+    %h4 Your ownerships
+    %p
+      .list-group
+        - @ownerships.each do |account|
+          .list-group-item
+            = account.name
+    %h4 Your memberships
+    %p
+      .list-group
+        - @accounts.each do |account|
+          .list-group-item
+            = account.name

@@ -1,0 +1,49 @@
+.container
+  %h2
+    .pull-right
+      .small.text-muted.text-right
+        .small
+          owned by
+        %strong=@account.owner.username
+    %i.fa{class: "fa-#{@account.name.downcase}"}
+    = @account.name
+  %hr
+  .jumbotron
+    Basic information such as total price and per member
+  %hr
+  .row
+    .col-md-12
+      .list-group
+        - @check_bills.each do |bill|
+          .list-group-item
+            .pull-right
+              .money.text-right
+                = bill.amount
+              .text-muted{'data-toggle': :tooltip, title: bill.created_at}
+                = bill.updated_at.strftime("%e %b %Y")
+            = bill.account.owner.username
+            updated this bill
+            .text-muted
+              = bill.state
+
+  .row
+    .col-md-6
+      %h3 Members
+      .list-group
+        - @account.users.each do |user|
+          .list-group-item
+            = user.username
+    .col-md-6
+      %h3 Bills (last period)
+      .list-group
+        - @bills.reverse.slice(0,@account.users.count).each do |bill|
+          .list-group-item
+            .pull-right
+              .money.text-right
+                = bill.amount
+              .text-muted{'data-toggle': :tooltip, title: bill.created_at}
+                = bill.created_at.strftime("%e %b %Y")
+            %a{href: "/accounts/#{bill.account.id}"}
+              = bill.account.owner.username
+            .text-muted
+              as member

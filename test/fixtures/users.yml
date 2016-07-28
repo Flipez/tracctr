@@ -1,0 +1,6 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: Tester
+  email: test@test.nope
+  paypal_url: 'http://test.de'

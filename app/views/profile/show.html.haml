@@ -1,0 +1,31 @@
+.container
+  .row
+    .col-lg-3
+      %ul.nav.nav-tab-pills.nav-stacked#tabs{'data-tabs': :tabs}
+        %li.active
+          %a{href: '#home', data: { toggle: 'tab' }}
+            %i.fa.fa-home.fa-fw
+            Home
+        %li
+          %a{href: '#wallet', data: { toggle: 'tab' }}
+            %i.fa.fa-money.fa-fw
+            Wallet
+            - if @wallet
+              .pull-right.bill
+                = @wallet.balance
+        %li
+          %a{href: '#accounts', data: { toggle: 'tab' }}
+            %i.fa.fa-users.fa-fw
+            Accounts
+            .pull-right.text-muted
+              O: #{@ownerships.count}
+              |
+              M: #{@accounts.count}
+    .col-lg-9
+      .tab-content
+        .tab-pane#home
+          = render partial: 'home'
+        .tab-pane#wallet
+          = render partial: 'wallet'
+        .tab-pane.active#accounts
+          = render partial: 'accounts'

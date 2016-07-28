@@ -1,0 +1,19 @@
+.container
+  .jumbotron
+    = form_for @user do |f|
+      .form-group.label-floating
+        = f.label :username
+        = f.text_field :username, class: 'form-control'
+        %p.help-block Maybe the only chance to choose something cool
+      .form-group.label-floating
+        = f.label :password
+        = f.password_field :password, class: 'form-control'
+        %p.help-block
+          The password is displayed and transferred in plain text. (of course not)
+      .form-group.label-floating
+        = f.label :email
+        = f.email_field :email, class: 'form-control'
+      .form-group.label-floating
+        = f.label :paypal_url
+        = f.url_field :paypal_url, class: 'form-control'
+      = f.submit
