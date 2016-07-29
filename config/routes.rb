@@ -3,6 +3,12 @@ Rails.application.routes.draw do
 
   resource :users
 
+  get '/one_shots' => 'one_shots#index'
+  post '/one_shots' => 'one_shots#create'
+  get '/one_shots/:id' => 'one_shots#show'
+
+  post '/bullets' => 'bullets#create'
+
   get '/logout' => 'sessions#destroy'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

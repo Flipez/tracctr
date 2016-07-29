@@ -1,0 +1,16 @@
+.container
+  .pull-right.text-right
+    %h3.text-muted dafuq?
+    %p.text-muted.small
+      A OneShot is a collection of little bills (bullets) and has a single payday.
+      %br
+      A OneShot is perfect for your daily food order at work.
+  %h2
+    %i.fa.fa-hand-o-right
+    OneShots
+  %p Here you may find a overview about all OneShots
+  %hr
+  .list-group
+    - @one_shots.each do |one_shot|
+      %h3= render partial: 'shared/one_shot-list-item', locals: { one_shot: one_shot }
+        

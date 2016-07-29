@@ -34,6 +34,26 @@ ActiveRecord::Schema.define(version: 20160720112916) do
     t.integer  "wallet_id"
     t.integer  "account_id"
   end
+  
+  create_table "bullets", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.float    "cost"
+    t.boolean  "paid",       default: false
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "one_shot_id"
+  end
+  
+  create_table "one_shots", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "owner_id"
+  end
+
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"

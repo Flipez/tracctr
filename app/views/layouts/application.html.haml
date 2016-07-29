@@ -22,7 +22,7 @@
             %span.icon-bar
           %a.navbar-brand{href: '/'}
             = image_tag 'logo.png', height: 22, width: 22, style: 'float: left; margin-right: 10px;'
-            AccountTracktor
+            Tracctr
         .navbar-collapse.collapse.navbar-success-collapse
           %ul.nav.navbar-nav
             %li{class: cp('/')}
@@ -34,6 +34,9 @@
               %li{class: cp("/accounts")}
                 %a{href: "/accounts"}
                   Accounts
+              %li{class: cp("/one_shots")}
+                %a{href: "/one_shots"}
+                  OneShots
           %ul.nav.navbar-nav.navbar-right
             %li
               - if logged_in?

@@ -1,0 +1,12 @@
+%a.row.list-group-item{href: "/one_shots/#{one_shot.id}", pointer: :cursor}
+  .col-md-2.text-left
+    %div{style: 'display: inline-block'}
+      %i.fa.fa-2x.fa-fw{class: "fa-#{one_shot.name.downcase}"}
+    %div{style: 'display: inline-block'}
+      = one_shot.name
+      .small
+        by
+        = one_shot.owner.username
+  .col-md-8
+  .col-md-2.text-right
+    %div= one_shot.price

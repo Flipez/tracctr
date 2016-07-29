@@ -1,0 +1,26 @@
+.container
+  %h2
+    .pull-right
+      .small.text-muted.text-right
+        .small
+          owned by
+        %strong=@one_shot.owner.username
+    %i.fa{class: "fa-#{@one_shot.name.downcase}"}
+    = @one_shot.name
+  %hr
+  .jumbotron
+    Basic information such as total price and per member
+  %hr
+  .row
+    %h3 Bullets
+    .list-group
+      - @one_shot.bullets.each do |bullet|
+        .list-group-item
+          .pull-right
+            .money.text-right
+              = bullet.cost
+            .text-muted{'data-toggle': :tooltip, title: bullet.created_at}
+              = bullet.created_at.strftime("%e %b %Y")
+          = bullet.user.username
+          .text-muted
+            = bullet.name
