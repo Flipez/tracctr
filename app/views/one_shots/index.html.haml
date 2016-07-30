@@ -1,10 +1,4 @@
 .container
-  .pull-right.text-right
-    %h3.text-muted dafuq?
-    %p.text-muted.small
-      A OneShot is a collection of little bills (bullets) and has a single payday.
-      %br
-      A OneShot is perfect for your daily food order at work.
   %h2
     %i.fa.fa-hand-o-right
     OneShots
@@ -13,4 +7,19 @@
   .list-group
     - @one_shots.each do |one_shot|
       %h3= render partial: 'shared/one_shot-list-item', locals: { one_shot: one_shot }
-        
+  .col-md-6
+    %h2 dafuq?
+    %p.small
+      A OneShot is a collection of little bills (bullets) and has a single payday.
+      %br
+      A OneShot is perfect for your daily food order at work.
+  .col-md-6.text-right
+    = form_for @one_shot, class: 'form-inline', turboboost: true do |f|
+      .form-group
+        = f.label 'name', 'Name'
+        = f.text_field 'name', class: 'form-control'
+      .form-group
+        = f.label 'description', 'Description'
+        = f.text_field 'description', class: 'form-control'
+      = f.hidden_field :owner_id, value: @cu.id
+      = f.button 'New OneShot', class: 'btn btn-success'

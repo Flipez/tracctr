@@ -13,7 +13,20 @@
       .form-group.label-floating
         = f.label :email
         = f.email_field :email, class: 'form-control'
+        %p.help-block
+          Some day I will start sending you spam.
       .form-group.label-floating
         = f.label :paypal_url
-        = f.url_field :paypal_url, class: 'form-control'
+        = f.url_field :paypal_url, value: 'https://paypal.me/', class: 'form-control'
+        %p.help-block
+          This URL is used to link your account members to your payment site.
+          Please use the following synatx:
+          %b https://paypal.me/phpsucks
       = f.submit
+
+:javascript
+  $('#user_username').on('input', function(){
+    var val = $('#user_username').val();
+    $('#user_paypal_url').val("https://paypal.me/"+val);
+
+  });

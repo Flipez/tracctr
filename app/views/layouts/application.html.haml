@@ -38,11 +38,14 @@
                 %a{href: "/one_shots"}
                   OneShots
           %ul.nav.navbar-nav.navbar-right
-            %li
-              - if logged_in?
+            - if logged_in?
+              %li
                 %a{href: '/logout'}= "Not #{@cu.username}? Logout"
-              - else
+            - else
+              %li
                 %a{href: '/login'} Login
+              %li
+                %a{href: '/users/new'} Register
     .container
       - if flash[:error]
         .alert.alert-danger.alert.dismissible

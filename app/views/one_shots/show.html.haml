@@ -14,7 +14,7 @@
   .row
     %h3 Bullets
     .list-group
-      - @one_shot.bullets.each do |bullet|
+      - @bullets.each do |bullet|
         .list-group-item
           .pull-right
             .money.text-right
@@ -24,3 +24,16 @@
           = bullet.user.username
           .text-muted
             = bullet.name
+  .row
+    .col-md-6
+    .col-md-6
+      = form_for @bullet, class: 'form-inline', turboboost: true do |f|
+        .form-group
+          = f.label 'name', 'Name'
+          = f.text_field 'name', class: 'form-control'
+        .form-group
+          = f.label 'cost', 'Cost'
+          = f.number_field 'cost', class: 'form-control', step: :any
+        = f.hidden_field :user_id, value: @cu.id
+        = f.hidden_field :one_shot_id, value: @one_shot.id
+        = f.button 'New Bullet', class: 'btn btn-success'
