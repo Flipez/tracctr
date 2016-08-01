@@ -8,8 +8,9 @@
     %i.fa{class: "fa-#{@one_shot.name.downcase}"}
     = @one_shot.name
   %hr
-  .jumbotron
-    Basic information such as total price and per member
+    %h3
+      Total Cost:
+      = @one_shot.price
   %hr
   .row
     %h3 Bullets
@@ -26,6 +27,8 @@
             = bullet.name
   .row
     .col-md-6
+      %h3 Description
+      %p= @one_shot.description
     .col-md-6
       = form_for @bullet, class: 'form-inline', turboboost: true do |f|
         .form-group
